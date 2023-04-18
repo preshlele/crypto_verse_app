@@ -4,6 +4,15 @@ import {HiMenu,HiX} from 'react-icons/hi'
 
 const Navbar = () => {
 
+  let Links = [
+    {name:"Home", link: "/"},
+    {name:"About", link: "/about"},
+    {name:"Support", link: "/"},
+    {name:"Platform", link: "/"},
+    {name:"Pricing", link: "/"},
+  
+  ]
+
 const [nav, setNav] = useState(false)
 const handleClick = () => setNav(!nav)
 
@@ -14,11 +23,13 @@ const handleClick = () => setNav(!nav)
         <div className="flex items-center">
           <h1 className="text-3xl font-bold mr-4 sm:text-4xl ">APTOS.</h1>
           <ul className="hidden md:flex justify-between">
-            <li>Home</li>
-            <li>About</li>
-            <li>Support</li>
-            <li>Platform</li>
-            <li>Pricing</li>
+            {Links.map((link)=>(
+              <li key={link.name}>
+                <a href={`${link.link}`}>
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
@@ -33,11 +44,11 @@ const handleClick = () => setNav(!nav)
       </div>
 
       <ul className={!nav ? "hidden" : "absolute bg-zinc-300 w-full px-8"}>
-        <li className="border-b-2 border-zinc-400 w-full">Home</li>
-        <li className="border-b-2 border-zinc-400 w-full">About</li>
-        <li className="border-b-2 border-zinc-400 w-full">Support</li>
-        <li className="border-b-2 border-zinc-400 w-full">Platform</li>
-        <li className="border-b-2 border-zinc-400 w-full">Pricing</li>
+       {Links.map((link)=>(
+        <li key={link.name}>
+          <a href={`${link.link}`}>{link.name}</a>
+        </li>
+       ))}
         <div className="flex flex-col my-4">
           <button className="bg-transparent text-green-500 px-8 py-3 mb-4">
             Sign In
